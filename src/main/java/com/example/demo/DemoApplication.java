@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
 
 @SpringBootApplication
-//@EnableScheduling
+@EnableScheduling
 public class DemoApplication {
 
 	public static void main(String[] args) {

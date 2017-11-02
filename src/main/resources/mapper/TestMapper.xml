@@ -17,7 +17,7 @@
 			
 		);
 	</insert>
-	<select id="selectUser" parameterType="hashmap"   resultType="hashmap">
+	<select id="selectUser" parameterType="Map"   resultType="hashmap">
 		SELECT "USER_ID"
 				, "USER_PASSWORD"
 				, "USER_NAME"

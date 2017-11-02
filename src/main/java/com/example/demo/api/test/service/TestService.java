@@ -45,9 +45,9 @@ public class TestService {
 		
 		Map<String, Object> rtnMap = new HashMap<String, Object>();
 		rtnMap.put("succuess", "true");
-		List<Map<String, Object>> rtnList = null;
+		List<Object> rtnList = null;
 		try {
-			rtnList = testMapper.selectUser(map);	
+			rtnList = testMapper.selectUser(map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put("succuess", "false");
