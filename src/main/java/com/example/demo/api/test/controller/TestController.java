@@ -73,4 +73,28 @@ public class TestController {
     	logger.debug(parameterMap.toString());
     	return gson.toJson(testService.getUserList(parameterMap));
 	}
+    
+    /*안복현 로그인 테스트*/
+    @RequestMapping(value="/login", method=RequestMethod.POST)
+    public  String login( HttpServletRequest request) {    	
+    	Map parameterMap = new HashMap();
+    	Enumeration enums = request.getParameterNames();
+    	System.out.println("enums = " + enums.hasMoreElements());
+    	while(enums.hasMoreElements()){
+	    	String paramName = (String)enums.nextElement();
+	    	System.out.println("paramName = " + paramName);
+	    	String[] parameters = request.getParameterValues(paramName);
+	
+	    	// Parameter가 배열일 경우
+	    	if(parameters.length > 1){
+	    		parameterMap.put(paramName, parameters);
+	    	// Parameter가 배열이 아닌 경우
+	    	}else{
+	    		parameterMap.put(paramName, parameters[0]);
+	    	}
+    	}
+    	logger.debug("aaaa="+parameterMap.toString());
+    	return gson.toJson(testService.loginUserCheck(parameterMap));
+	}
+    
 }
