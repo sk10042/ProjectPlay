@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>테스트 화면입니다.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <!--    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                url:'http://localhost:7070/demo/test/getUserList',
+                dataType:'json',
+                type:'GET',
+                data:{'msg':'aaaa'},
+
+
+
+                success:function(response, textStatus, xhr) {
+                console.log(xhr.status);
+                    //console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+                    if(response['succuess'] == 'true'){
+
+                        console.log(response.rtnList);
+                            //$('#result').html(rtnList['user_id']);
+                        console.log(response.rtnList[0].user_id);
+                        $('#result').html(response.rtnList[0].user_id);
+                    }
+                }
+            });
+
+            $('#btn_login').click(function () {
+                alert($('#inputId').val());
+                $.ajax({
+                    url:'http://localhost:7070/demo/test/login'
+                ,   dataType:'json'
+                ,   type:'POST'
+                ,   data:{'user_id':$('#inputId').val(),'password':$('#inputPassword').val()}
+                ,   success:function(response, textStatus, xhr) {
+                        if (response['succuess'] == 'true'){
+                            alert("response.rtnList[0].user_id");
+                        }
+                        else{
+                            alert('바보');
+                        }
+
+                    }
+                });
+
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin">
+        <h2 class="form-signin-heading">로그인</h2>
+        <label for="inputId" class="sr-only">ID</label>
+        <input type="text" id="inputId" class="form-control" placeholder="User ID" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <!-- <input type="button" id="btn_login" value="Login">-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="btn_login">Sign in</button>
+    </form>
+
+
+</div> <!-- /container -->
+
+<p id="result">바보 </p>
+
+</body>
+</html>
