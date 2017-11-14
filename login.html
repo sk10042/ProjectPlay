@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 화면</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/cover.css" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="./js/vendor/jquery-3.2.1.min.js"></script>-->
+    <!--<script src="./js/vendor/bootstrap.min.js"></script>-->
+    <!--<script src="./js/vendor/popper.min.js"></script>-->
+    <!--<script src="./js/plugins.js"></script>-->
+    <!--<script src="./js/main.js"></script>-->
+
+
+    <script   src="http://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="./js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="./js/vendor/popper.min.js"></script>
+    <script src="./js/vendor/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+//            $.ajax({
+//                url:'http://localhost:7070/demo/test/getUserList',
+//                dataType:'json',
+//                type:'GET',
+//                data:{'msg':'aaaa'},
+//                success:function(response, textStatus, xhr) {
+//                    console.log(xhr.status);
+//                    //console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+//                    if(response['succuess'] == 'true'){
+//
+//                        console.log(response.rtnList);
+//                        //$('#result').html(rtnList['user_id']);
+//                        console.log(response.rtnList[0].user_id);
+////                        $('#result').html(response.rtnList[0].user_id);
+//                    }
+//                }
+//            });
+
+            $('#btn_login').click(function () {
+                $.ajax({
+                    url:'http://localhost:7070/demo/test/login'
+                    ,   dataType:'json'
+                    ,   type:'POST'
+                    ,   data:{'user_id':$('#inputId').val(),'password':$('#inputPassword').val()}
+                    ,   success:function(response, textStatus, xhr) {
+                        if (response['succuess'] == 'true'){
+                            alert(response.rtnList[0].user_id);
+                        }
+                        else{
+                            alert('바보');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body class="align-content-lg-center">
+<div class="container align-content-lg-center">
+    <form class="form-signin col-lg-4">
+        <h2 class="form-signin-heading ">로그인</h2>
+        <label for="inputId" class="sr-only">ID</label>
+        <input type="text" id="inputId" class="form-control" placeholder="User ID" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">+
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <!-- <input type="button" id="btn_login" value="Login">-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="btn_login">Sign in</button>
+    </form>
+</div>
+
+</body>
+</html>

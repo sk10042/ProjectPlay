@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>테스트 화면입니다.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+
+    <!--<script src="https://code.jquery.com/jquery-1.9.1.js"></script>-->
+    <script src="js/vendor/jquery-3.2.1.min.js"></script>
+    <!--    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                url:'http://localhost:7070/demo/test/getUserList',
+                dataType:'json',
+                type:'GET',
+                data:{'msg':'aaaa'},
+                success:function(response, textStatus, xhr) {
+                console.log(xhr.status);
+                    //console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+                    if(response['succuess'] == 'true'){
+
+                        console.log(response.rtnList);
+                            //$('#result').html(rtnList['user_id']);
+                        console.log(response.rtnList[0].user_id);
+                        $('#result').html(response.rtnList[0].user_id);
+                    }
+                }
+            });
+
+            $('#btn_login').click(function () {
+                alert($('#inputId').val());
+                $.ajax({
+                    url:'http://localhost:7070/demo/test/login'
+                ,   dataType:'json'
+                ,   type:'POST'
+                ,   data:{'user_id':$('#inputId').val(),'password':$('#inputPassword').val()}
+                ,   success:function(response, textStatus, xhr) {
+                        if (response['succuess'] == 'true'){
+                            alert(response.rtnList[0].user_id);
+                        }
+                        else{
+                            alert('바보');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin">
+        <h2 class="form-signin-heading">로그인</h2>
+        <label for="inputId" class="sr-only">ID</label>
+        <input type="text" id="inputId" class="form-control" placeholder="User ID" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">+
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <!-- <input type="button" id="btn_login" value="Login">-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="btn_login">Sign in</button>
+    </form>
+
+
+</div> <!-- /container -->
+
+<p id="result">바보 </p>
+
+</body>
+</html>
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+            <header class="masthead clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand">Cover</h3>
+                    <nav class="nav nav-masthead">
+                        <a class="nav-link active" href="#">Home</a>
+                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">Contact</a>
+                    </nav>
+                </div>
+            </header>
+
+            <main role="main" class="inner cover">
+                <h1 class="cover-heading">Cover your page.</h1>
+                <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+                <p class="lead">
+                    <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+                </p>
+            </main>
+
+            <footer class="mastfoot">
+                <div class="inner">
+                    <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                </div>
+            </footer>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="../../../../assets/js/vendor/popper.min.js"></script>
+<script src="../../../../dist/js/bootstrap.min.js"></script>
+</body>
+</html>
