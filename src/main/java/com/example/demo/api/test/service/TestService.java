@@ -76,10 +76,10 @@ public  Map<String, Object> loginUserCheck(Map<String, Object> map) {
 	}
 			
 
-//	@Scheduled(fixedRateString = "10000")
-//	public void scjTest()  {
-//		System.out.println("Test");
-//	}
+	@Scheduled(fixedRateString = "10000")
+	public void scjTest()  {
+		System.out.println("Test");
+	}
 	
 	
 }
