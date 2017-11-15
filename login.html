@@ -49,18 +49,23 @@
 //            });
 
             $('#btn_login').click(function () {
+                alert('aaaa');
                 $.ajax({
                     url:'http://localhost:7070/demo/test/login'
                     ,   dataType:'json'
                     ,   type:'POST'
                     ,   data:{'user_id':$('#inputId').val(),'password':$('#inputPassword').val()}
                     ,   success:function(response, textStatus, xhr) {
+                        alert('abbbb');
                         if (response['succuess'] == 'true'){
                             alert(response.rtnList[0].user_id);
                         }
                         else{
                             alert('바보');
                         }
+                    }
+                    ,   error:function () {
+                        alert("error");
                     }
                 });
             });
