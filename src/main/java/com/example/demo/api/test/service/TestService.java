@@ -58,9 +58,23 @@ public class TestService {
 		return	rtnMap;
 	}
 	
-	
-	
-	
+public  Map<String, Object> loginUserCheck(Map<String, Object> map) {
+		
+		Map<String, Object> rtnMap = new HashMap<String, Object>();
+		rtnMap.put("succuess", "true");
+		List<Object> rtnList = null;
+		try {
+			rtnList = testMapper.loginUser(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("succuess", "false");
+		}
+		rtnMap.put("rtnList", rtnList);
+		//return map;
+		
+		return	rtnMap;
+	}
+			
 
 	@Scheduled(fixedRateString = "10000")
 	public void scjTest()  {

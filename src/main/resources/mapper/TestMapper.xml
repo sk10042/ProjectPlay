@@ -12,17 +12,19 @@
 			 #{userId        }
 			,#{userPassword  }
 			,#{userName      }
-			,cast (#{userAge       } as integer)
-			
-			
+			,cast (#{userAge       } as integer)			
 		);
 	</insert>
 	<select id="selectUser" parameterType="Map"   resultType="hashmap">
-		SELECT "USER_ID"
-				, "USER_PASSWORD"
-				, "USER_NAME"
-				, "USER_AGE"
-		FROM public."USER_INFO"
+	SELECT user_id, user_pw, user_nm, e_mail
+	FROM public.gw_member
+	</select>
+	
+	<select id="loginUser" parameterType="Map"   resultType="hashmap">	
+		SELECT user_id, user_pw, user_nm, e_mail
+		FROM public.gw_member
+		where	user_id=#{user_id }
+		and		user_pw=#{password }
 	</select>
 	
 
