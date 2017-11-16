@@ -7,23 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
-
-    <!-- Bootstrap core JavaScript ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--<script src="./js/vendor/jquery-3.2.1.min.js"></script>-->
-    <!--<script src="./js/vendor/bootstrap.min.js"></script>-->
-    <!--<script src="./js/vendor/popper.min.js"></script>-->
-    <!--<script src="./js/plugins.js"></script>-->
-    <!--<script src="./js/main.js"></script>-->
-
-
-    <script   src="http://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="./js/vendor/jquery.min.js"><\/script>')</script>
+    <link href="css/main.css" rel="stylesheet">
+    <script src="./js/vendor/jquery-3.2.1.min.js"></script>
     <script src="./js/vendor/popper.min.js"></script>
     <script src="./js/vendor/bootstrap.min.js"></script>
 
@@ -48,34 +33,36 @@
 //                }
 //            });
 
-            $('#btn_login').click(function () {
-                alert('aaaa');
+            $('#btnLogin').click(function () {
                 $.ajax({
                     url:'http://localhost:7070/demo/test/login'
                     ,   dataType:'json'
                     ,   type:'POST'
                     ,   data:{'user_id':$('#inputId').val(),'password':$('#inputPassword').val()}
                     ,   success:function(response, textStatus, xhr) {
-                        alert('abbbb');
                         if (response['succuess'] == 'true'){
-                            alert(response.rtnList[0].user_id);
+                            $("#userId").html(response.rtnList[0].user_id);
+                            $("#userNm").html(response.rtnList[0].user_nm);
+                            $("#eMail").html(response.rtnList[0].e_mail);
                         }
                         else{
-                            alert('바보');
+                            alert('오류가 발생했습니다.');
                         }
                     }
                     ,   error:function () {
-                        alert("error");
+                        alert("뭔가 에러가 발생했음.");
                     }
                 });
             });
         });
+
+
     </script>
 
 </head>
 <body class="align-content-lg-center">
-<div class="container align-content-lg-center">
-    <form class="form-signin col-lg-4">
+<div class="align-content-lg-center">
+    <form class="form-signin col-lg-2">
         <h2 class="form-signin-heading ">로그인</h2>
         <label for="inputId" class="sr-only">ID</label>
         <input type="text" id="inputId" class="form-control" placeholder="User ID" required autofocus>
@@ -87,8 +74,22 @@
             </label>
         </div>
         <!-- <input type="button" id="btn_login" value="Login">-->
-        <button class="btn btn-lg btn-primary btn-block" type="submit" id="btn_login">Sign in</button>
+        <input type="button" class="btn btn-lg btn-primary btn-block" id="btnLogin" value="Sign in">
+
     </form>
+
+    <div>
+        <label>ID</label>
+        <label id="userId"></label>
+    </div>
+    <div>
+        <label>이름</label>
+        <label id="userNm"></label>
+    </div>
+    <div>
+        <label>이메일</label>
+        <label id="eMail"></label>
+    </div>
 </div>
 
 </body>

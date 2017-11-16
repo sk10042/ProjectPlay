@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>가입자 조회</title>
+    <link href="css/main.css" rel="stylesheet">
+    <script src="./js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="./js/vendor/popper.min.js"></script>
+    <script src="./js/vendor/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                url:'http://localhost:7070/demo/test/getUserList'
+                ,   dataType:'json'
+                ,   type:'GET'
+                ,   data:{}
+                ,   success:function(response, textStatus, xhr) {
+
+                    if (response['succuess'] == 'true'){
+                        alert("정상적으로 조회 되었습니다.");
+
+                        var ln_cnt = response.rtnList.length;
+                        for ( var i = 0 ; i < ln_cnt ; i++){
+                            $("#userId_"+i).html(response.rtnList[i].user_id);
+                            $("#passWd_"+i).html(response.rtnList[i].user_pw);
+                            $("#userNm_"+i).html(response.rtnList[i].user_nm);
+                            $("#eMail_"+i).html(response.rtnList[i].e_mail);
+                        }
+                    }
+                    else{
+                        alert('오류가 발생했습니다.');
+                    }
+                }
+                ,   error:function () {
+                    alert("뭔가 에러가 발생했음.");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="jumbotron">
+            <h1 class="">가입자 조회</h1>
+        </header>
+        <div class="form-group row">
+            <label for="userId" class="col-form-label col-sm-3">사용자 ID</label>
+            <label for="passWd" class="col-form-label col-sm-3">비밀번호</label>
+            <label for="userNm" class="col-form-label col-sm-3">이름</label>
+            <label for="eMail" class="col-form-label col-sm-3">E-Mail</label>
+        </div>
+        <div class="form-group row">
+            <label id="userId_0" class="col-form-label col-sm-3"></label>
+            <label id="passWd_0" class="col-form-label col-sm-3"></label>
+            <label id="userNm_0" class="col-form-label col-sm-3"></label>
+            <label id="eMail_0" class="col-form-label col-sm-3"></label>
+        </div>
+        <div class="form-group row">
+            <label id="userId_1" class="col-form-label col-sm-3"></label>
+            <label id="passWd_1" class="col-form-label col-sm-3"></label>
+            <label id="userNm_1" class="col-form-label col-sm-3"></label>
+            <label id="eMail_1" class="col-form-label col-sm-3"></label>
+        </div>
+        <div class="form-group row">
+            <label id="userId_2" class="col-form-label col-sm-3"></label>
+            <label id="passWd_2" class="col-form-label col-sm-3"></label>
+            <label id="userNm_2" class="col-form-label col-sm-3"></label>
+            <label id="eMail_2" class="col-form-label col-sm-3"></label>
+        </div>
+
+
+    </div>
+</body>
+</html>

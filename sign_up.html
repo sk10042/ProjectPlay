@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원 가입</title>
+    <link href="css/main.css" rel="stylesheet">
+    <script src="./js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="./js/vendor/popper.min.js"></script>
+    <script src="./js/vendor/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#canBtn').click(function () {
+                window.location.replace("http://localhost:63342/ProjectPlay/index.html?_ijt=ktkbfa3stkeuf7sl0msgn6gcq4")
+            });
+            $('#regBtn').click(function () {
+                $.ajax({
+                    url:'http://localhost:7070/demo/test/regUser'
+                    ,   dataType:'json'
+                    ,   type:'POST'
+                    ,   data:{  'userId':$('#userId').val()
+                            ,   'passWd':$('#passWd').val()
+                            ,   'userNm':$('#userNm').val()
+                            ,   'eMail':$('#eMail').val()
+                        }
+                    ,   success:function(response, textStatus, xhr) {
+                        if (response['succuess'] == 'true'){
+                            alert("정상적으로 저장 되었습니다.");
+                            window.location.replace("http://localhost:63342/ProjectPlay/index.html?_ijt=ktkbfa3stkeuf7sl0msgn6gcq4")
+                        }
+                        else{
+                            alert('오류가 발생했습니다.');
+                        }
+                    }
+                    ,   error:function () {
+                        alert("뭔가 에러가 발생했음.");
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="jumbotron">
+            <h1 class="">회원등록</h1>
+        </header>
+        <div class="form-group row">
+            <label for="userId" class="col-form-label col-sm-3">사용자 ID</label>
+            <div class="col-sm-9">
+                <input type="text" class="col form-control" id="userId"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="passWd" class="col-form-label col-sm-3">비밀번호</label>
+            <div class="col-sm-9">
+                <input type="password" class="col form-control" id="passWd"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="userNm" class="col-form-label col-sm-3">이름</label>
+            <div class="col-sm-9">
+                <input type="text" class="col form-control" id="userNm"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="eMail" class="col-form-label col-sm-3">E-Mail</label>
+            <div class="col-sm-9">
+                <input type="email" class="col form-control" id="eMail"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <button type="button" class="btn btn-outline-primary" id="regBtn">회원가입</button>
+                <button type="button" class="btn btn-outline-danger" id="canBtn">취소</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
